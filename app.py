@@ -3,6 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 import string
 import random
 
+# CONNECTING TO URLS DATABASE
 app = Flask(__name__)
 app.config["DEBUG"] = True
 SQLALCHEMY_DATABASE_URI = "mysql+mysqlconnector://{username}:{password}@{hostname}/{databasename}".format(
@@ -16,6 +17,7 @@ app.config["SQLALCHEMY_POOL_RECYCLE"] = 299
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 db = SQLAlchemy(app)
 
+# URL CLASS
 class Url(db.Model):
     __tablename__ = "urls"
     id_ = db.Column("id_", db.Integer, primary_key=True)
@@ -26,8 +28,7 @@ class Url(db.Model):
         self.long_ = long_
         self.short = short
 
-
-#FUNCTION THAT SHORTENS THE URL
+# FUNCTION THAT SHORTENS THE URL
 def shorten_url():
     letters = string.ascii_letters
     while True:
@@ -37,17 +38,18 @@ def shorten_url():
         if not short_url:
             return random_letters
 
+# POST/GET METHOD
 @app.route("/", methods=["POST", "GET"])
 def index():
     if request.method == "POST":
         original_url = request.form["nm"]
         url_found = Url.query.filter_by(long_= original_url).first()
 
-#CHECKS IF URL IS ALREADY IN DATABASE AND RETURNS IF IT IS FOUND
+# CHECKS IF URL IS ALREADY IN DATABASE AND RETURNS IF IT IS FOUND
         if url_found:
             return f"{url_found.short}"
 
-#IF URL IS NOT IN DATABASE, CREATE A NEW SHORTENED URL
+# IF URL IS NOT IN DATABASE, CREATE A NEW SHORTENED URL
         else:
             shortened_url = shorten_url()
             print(shortened_url)
@@ -58,7 +60,7 @@ def index():
     else:
         return render_template("main_page.html", urls=Url.query.all())
 
-#REDIRECTING TO ORIGINAL LINK
+# REDIRECTING TO ORIGINAL LINK
 @app.route('/<shortened_url>')
 def redirection(shortened_url):
     long_url = Url.query.filter_by(short=shortened_url).first()

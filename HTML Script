@@ -1,28 +1,26 @@
 <html>
 <head>
+<link rel="icon" href="http://harshildave.pythonanywhere.com/ozj">
 <style>
 
-body {
-    background-color: 1f2833;
-    width:100%;
-    margin:0px;
-    padding:0px;
+body{
+   background-image: url("http://harshildave.pythonanywhere.com/fHo");
 }
 
 h2 {
     font-family: Arial, serif;
-    font-size:15px;
-    padding-top:20px;
+    font-size: 15px;
+    padding-top: 20px;
     padding-bottom: 10px;
-    width:400px;
+    width: 400px;
     margin: auto;
 }
 
-#container{
+#container {
     font-family: Arial, serif;
-    font-size:17px;
-    padding-top:20px;
-    width:400px;
+    font-size: 17px;
+    padding-top: 30px;
+    width: 400px;
     margin: auto;
 }
 
@@ -30,13 +28,13 @@ h2 {
 </head>
 <body>
 <div id="container">
-    <h1 style="color: Cyan;">Harshil's URL Shortener</h1>
-    <h2 style="color: C5C6C7; text-align:center;" > CLICK GENERATE AND ENTER YOUR THREE LETTER CODE AFTER THE ' / ' IN THE ADDRESS BAR </h2>
+    <h1 style="color: Cyan; text-align:center;" > Welcome to SnipURL </h1>
+    <h2 style="color: C5C6C7; text-align:center;" > CLICK SNIP AND ENTER YOUR THREE LETTER CODE AFTER THE ' / ' IN THE ADDRESS BAR </h2>
     <div id="generator">
         <form id="form" action="#" method="post">
           <fieldset>
             <input style="border:2px solid Cyan;" type="url" name="nm" id="url" placeholder="Enter a long URL">
-            <input type="submit" value="Generate!"></input>
+            <input type="submit" value="Snip!"></input>
           </fieldset>
         </form>
     </div>
